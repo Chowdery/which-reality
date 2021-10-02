@@ -2,11 +2,9 @@
 <head>
   <title>Oh geez... What reality am I in?</title>
 </head>
-
+  
 <body>
 <h1> Server Information</h1>
-<meta http-equiv="Content-Security-Policy"
-    content="default-src 'self'; img-src https://*; child-src 'none';">
 <?php 
 
 function command_exist($cmd) {
@@ -18,6 +16,8 @@ if (command_exist("uname")) {
     $OS_NAME = exec("uname -r");
     $OS_VER = "";
 }
+
+echo "Kernel version: " . $OS_NAME . " " . $OS_VER . "<br/>";
 
 if (command_exist("apache2")) {
     $WEBPROG = exec("apache2 -V | grep ^Server\ version");
@@ -35,6 +35,10 @@ if (command_exist("apache2")) {
         $WEBPROG = "Web Server: NGINX (Undetermined version)";
     }
 }
+
+echo $WEBPROG . "<br/>";
+
+echo "PHP Version: " . phpversion() . "<br/>";
 ?>
 
 <h1> Running Processes </h1>
